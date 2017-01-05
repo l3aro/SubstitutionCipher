@@ -10,6 +10,9 @@ namespace SubstitutionCipher
     {
         static void Main(string[] args)
         {
+            SubstitutionCipher SubstitutionCipher = new SubstitutionCipher();
+
+            Console.ReadKey();
         }
     }
 }
