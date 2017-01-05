@@ -8,9 +8,14 @@ namespace SubstitutionCipher
 {
     class SubstitutionCipher
     {
-        public string key;
+        private string key { get; set; }
 
         public SubstitutionCipher()
+        {
+            GenerateKey();
+        }
+
+        public void GenerateKey()
         {
             byte[] baseAlphabet = new byte[26];
             int[] order = new int[26];
@@ -23,10 +28,10 @@ namespace SubstitutionCipher
                 order[i] = i;
             }
 
-            
+
 
             Random rnd = new Random();
-            while (i > 1) 
+            while (i > 1)
             {
                 int pos = rnd.Next(0, i);
                 keyAlphabet[j] = baseAlphabet[pos];
@@ -34,10 +39,10 @@ namespace SubstitutionCipher
                 i--;
                 j++;
             }
-            keyAlphabet[j] = baseAlphabet[i - 1]; 
+            keyAlphabet[j] = baseAlphabet[i - 1];
             key = Encoding.ASCII.GetString(keyAlphabet);
         }
-        
+
         // remove an element at exactly position from an array of bytes
         private byte[] RemoveIndex(byte[] source, int index)
         {
