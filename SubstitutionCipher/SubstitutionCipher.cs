@@ -55,5 +55,56 @@ namespace SubstitutionCipher
 
             return dest;
         }
+
+        public string Encrypt(string plainText)
+        {
+            plainText = plainText.ToUpper();
+            byte[] plainTextData = Encoding.ASCII.GetBytes(plainText);
+            string result = "";
+            for (int i = 0; i < plainTextData.Length; i++)
+            {
+                if (plainTextData[i] < 65 || plainTextData[i] > 90)
+                {
+                    // add to result string if the character is not an alphabet element
+                    result += Encoding.ASCII.GetString(new byte[] { plainTextData[i] });
+                    continue;
+                }
+                // find position
+                int pos = plainTextData[i] - 65;
+
+                result += key[pos];
+            }
+            return result;
+        }
+
+        public string Decrypt(string encrypted)
+        {
+            encrypted = encrypted.ToUpper();
+            // this time, we convert to byte array just to find out the current character is alphabet element or not
+            byte[] encryptedData = Encoding.ASCII.GetBytes(encrypted);
+            string result = "";
+            for (int i = 0; i < encryptedData.Length; i++)
+            {
+                if (encryptedData[i] < 65 || encryptedData[i] > 90)
+                {
+                    // add to result string if the character is not an alphabet element
+                    result += Encoding.ASCII.GetString(new byte[] { encryptedData[i] });
+                    continue;
+                }
+                // find position
+                int pos = 0;
+                for (int j = 0; j < 26; j++)
+                {
+                    if (encrypted[i] == key[j])
+                    {
+                        pos = j;
+                        break;
+                    }
+                }
+
+                result += Encoding.ASCII.GetString(new byte[] { (byte)(pos + 65) });
+            }
+            return result;
+        }
     }
 }

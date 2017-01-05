@@ -12,6 +12,10 @@ namespace SubstitutionCipher
         {
             SubstitutionCipher SubstitutionCipher = new SubstitutionCipher();
 
+            string encrypted = SubstitutionCipher.Encrypt("Vu Thu Hoai");
+
+            string decrypted = SubstitutionCipher.Decrypt(encrypted);
+
             Console.ReadKey();
         }
     }
