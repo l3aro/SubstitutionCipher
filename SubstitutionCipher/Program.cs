@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SubstitutionCipher
 {
@@ -12,9 +8,19 @@ namespace SubstitutionCipher
         {
             SubstitutionCipher SubstitutionCipher = new SubstitutionCipher();
 
-            string encrypted = SubstitutionCipher.Encrypt("Vu Thu Hoai");
+            Console.Write("Nhap chuoi can ma hoa: ");
+            string plainText = Console.ReadLine();
+            while (plainText == "")
+            {
+                Console.Write("Chuoi vua nhap khong co ki tu nao! Nhap lai: ");
+                plainText = Console.ReadLine();
+            }
+
+            string encrypted = SubstitutionCipher.Encrypt(plainText);
+            Console.WriteLine("Chuoi da ma hoa la: {0}", encrypted);
 
             string decrypted = SubstitutionCipher.Decrypt(encrypted);
+            Console.WriteLine("Chuoi da giai ma la: {0}", decrypted);
 
             Console.ReadKey();
         }
