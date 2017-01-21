@@ -16,10 +16,12 @@ namespace SubstitutionCipher
                 plainText = Console.ReadLine();
             }
 
-            string encrypted = SubstitutionCipher.Encrypt(plainText);
+            string key = SubstitutionCipher.GenerateNewKey();
+
+            string encrypted = SubstitutionCipher.Encrypt(plainText, key);
             Console.WriteLine("Chuoi da ma hoa la: {0}", encrypted);
 
-            string decrypted = SubstitutionCipher.Decrypt(encrypted);
+            string decrypted = SubstitutionCipher.Decrypt(encrypted, key);
             Console.WriteLine("Chuoi da giai ma la: {0}", decrypted);
 
             Console.ReadKey();

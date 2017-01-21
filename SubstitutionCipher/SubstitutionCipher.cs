@@ -5,14 +5,9 @@ namespace SubstitutionCipher
 {
     class SubstitutionCipher
     {
-        private string key { get; set; }
+        public SubstitutionCipher() { }
 
-        public SubstitutionCipher()
-        {
-            GenerateKey();
-        }
-
-        public void GenerateKey()
+        public string GenerateNewKey()
         {
             byte[] baseAlphabet = new byte[26];
             int[] order = new int[26];
@@ -37,7 +32,7 @@ namespace SubstitutionCipher
                 j++;
             }
             keyAlphabet[j] = baseAlphabet[i - 1];
-            key = Encoding.ASCII.GetString(keyAlphabet);
+            return Encoding.ASCII.GetString(keyAlphabet);
         }
 
         // remove an element at exactly position from an array of bytes
@@ -53,7 +48,7 @@ namespace SubstitutionCipher
             return dest;
         }
 
-        public string Encrypt(string plainText)
+        public string Encrypt(string plainText, string key)
         {
             plainText = plainText.ToUpper();
             byte[] plainTextData = Encoding.ASCII.GetBytes(plainText);
@@ -74,7 +69,7 @@ namespace SubstitutionCipher
             return result;
         }
 
-        public string Decrypt(string encrypted)
+        public string Decrypt(string encrypted, string key)
         {
             encrypted = encrypted.ToUpper();
             // this time, we convert to byte array just to find out the current character is alphabet element or not
